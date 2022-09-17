@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
-use App\Http\Controllers\Controller;
-
 class AuthController extends Controller
 {
     public function loginPage(Request $request) {
@@ -22,7 +20,9 @@ class AuthController extends Controller
 
     public function loginApi(Request $request) {
         try {
-            $response = Http::post($this->url() . "/api/auth/login", [
+            $url = config('app.api_url');
+
+            $response = Http::post($url . "/api/auth/login", [
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
@@ -37,6 +37,7 @@ class AuthController extends Controller
                 return back();
             }
 
+            // Store token in Session after login
             Session::put("token", $result['data']['access_token']);
 
             return redirect()->route('admin');
@@ -52,7 +53,9 @@ class AuthController extends Controller
 
     public function registerApi(Request $request) {
         try {
-            $response = Http::post($this->url() . "/api/auth/register", [
+            $url = config('app.api_url');
+
+            $response = Http::post($url . "/api/auth/register", [
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
@@ -86,12 +89,15 @@ class AuthController extends Controller
 
     public function logout(Request $request) {
         try {
+            $url = config('app.api_url');
+
             $token = Session::get('token');
 
-            $response = Http::withToken($token)->get($this->url() . "/api/auth/logout");
+            $response = Http::withToken($token)->get($url . "/api/auth/logout");
 
             $result = json_decode((string) $response->getBody(), true);
 
+            // Remove token in Session after logout
             Session::put("token", "");
 
             return redirect()->route('login');
