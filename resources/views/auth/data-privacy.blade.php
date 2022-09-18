@@ -45,11 +45,11 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            {{-- <div class="col-lg-5 d-none d-lg-block bg-register-image"></div> --}}
+                            {{-- <div class="col-lg-6 d-none d-lg-block bg-login-image"></div> --}}
                             <div class="col-lg-12">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Register</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Data Privacy</h1>
                                     </div>
 
                                     @if(session()->has('notification'))
@@ -60,32 +60,25 @@
                                         </div>
                                     @endif
 
-                                    <form class="user" action="{{ route('registerApi') }}" method="post" role="form" autocomplete="off">
-                                        @csrf
+                                    <form class="user" action="{{ route('register') }}" method="get" role="form"  autocomplete="off">
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="name" name="name"
-                                                placeholder="Name">
+                                            {{-- content goes here! --}}
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                                            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                                         </div>
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email" name="email"
-                                                placeholder="Email Address">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password" name="password" placeholder="Password">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="password_confirmation" name="password_confirmation" placeholder="Repeat Password">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck" name="agree" value="1" required>
+                                                <label class="custom-control-label" for="customCheck">Agree</label>
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Register Account
+                                            Proceed
                                         </button>
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="{{ route('login') }}">Already have an account? Login!</a>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -93,7 +86,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <!-- Bootstrap core JavaScript-->

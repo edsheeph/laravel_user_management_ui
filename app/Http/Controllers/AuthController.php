@@ -10,11 +10,18 @@ use GuzzleHttp\Client;
 
 class AuthController extends Controller
 {
+    public function dataPrivacyPage(Request $request) {
+        return view('auth.data-privacy');
+    }
+
     public function loginPage(Request $request) {
         return view('auth.login');
     }
 
     public function registerPage(Request $request) {
+        if (!$request->has('agree')) {
+            return back();
+        }
         return view('auth.register');
     }
 
@@ -22,7 +29,11 @@ class AuthController extends Controller
         try {
             $url = config('app.api_url');
 
-            $response = Http::post($url . "/api/auth/login", [
+            $response = Http::withHeaders([
+                'X-First' => 'foo',
+                'X-Second' => 'bar'
+            ])
+            ->post($url . "/api/auth/login", [
                 'email' => $request->email,
                 'password' => $request->password,
             ]);
@@ -55,7 +66,11 @@ class AuthController extends Controller
         try {
             $url = config('app.api_url');
 
-            $response = Http::post($url . "/api/auth/register", [
+            $response = Http::withHeaders([
+                'X-First' => 'foo',
+                'X-Second' => 'bar'
+            ])
+            ->post($url . "/api/auth/register", [
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => $request->password,
@@ -93,7 +108,12 @@ class AuthController extends Controller
 
             $token = Session::get('token');
 
-            $response = Http::withToken($token)->get($url . "/api/auth/logout");
+            $response = Http::withHeaders([
+                'X-First' => 'foo',
+                'X-Second' => 'bar'
+            ])
+            ->withToken($token)
+            ->get($url . "/api/auth/logout");
 
             $result = json_decode((string) $response->getBody(), true);
 

@@ -20,14 +20,27 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <link href="{{ asset('sb-admin/css/carousel.css') }}" rel="stylesheet">
+
 </head>
 
-<body class="bg-gradient-primary">
+<body class="">
+    <div class="carousel slide">
+		<div class="carousel-inner">
+			<div class="active item one"></div>
+			<!--<div class="item two"></div>
+			<div class="item three"></div>
+			<div class="item four"></div>-->
+		</div>
+	</div>
 
     <div class="container">
 
         <div class="row">
             <div class="col-xs-12 col-md-12 col-lg-6 offset-lg-3">
+                <div class="my-5 text-center">
+                    <img class="" src="{{ asset('sb-admin/img/undraw_profile_2.svg') }}" alt="..." width="250px" height="250px">
+                </div>
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
@@ -58,23 +71,29 @@
                                             <input type="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" name="password" placeholder="Password">
                                         </div>
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
                                                 <input type="checkbox" class="custom-control-input" id="customCheck" name="remember_me">
                                                 <label class="custom-control-label" for="customCheck">Remember
                                                     Me</label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             login
                                         </button>
                                     </form>
                                     <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="#">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="{{ route('register') }}">Create an Account!</a>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-md-12 col-lg-6">
+                                            <div class="text-center">
+                                                <a class="small" href="#">Forgot Password?</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-md-12 col-lg-6">
+                                            <div class="text-center">
+                                                <a class="small" href="{{ route('dataPrivacy') }}">Create an Account!</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

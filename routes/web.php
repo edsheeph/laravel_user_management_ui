@@ -17,7 +17,7 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', function () {
-    return back();
+    return redirect()->route('login');
 });
 
 Route::group(['middleware' => ['auth.no-key']], function() {
@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth.no-key']], function() {
 
     Route::get('register', [AuthController::class, 'registerPage'])->name('register');
     Route::post('registerApi', [AuthController::class, 'registerApi'])->name('registerApi');
+
+    Route::get('data-privacy', [AuthController::class, 'dataPrivacyPage'])->name('dataPrivacy');
 });
 
 Route::group(['middleware' => ['auth.key']], function() {

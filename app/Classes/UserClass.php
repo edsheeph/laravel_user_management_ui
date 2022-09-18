@@ -15,7 +15,12 @@ class UserClass
             $url = config('app.api_url');
             $token = Session::get('token');
 
-            $response = Http::withToken($token)->get($url . "/api/auth/user");
+            $response = Http::withHeaders([
+                'X-First' => 'foo',
+                'X-Second' => 'bar'
+            ])
+            ->withToken($token)->get($url . "/api/auth/user");
+
             $result = json_decode((string) $response->getBody(), true);
 
             return $result['data'];
