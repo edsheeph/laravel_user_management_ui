@@ -4,7 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-class UserFacadesServiceProvider extends ServiceProvider
+class HelperFacadesServiceProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -23,8 +23,8 @@ class UserFacadesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('userclass',function(){
-            return new UserClass();
+        $this->app->bind('helperclass',function(){
+            return new HelperClass();
         });
     }
 }

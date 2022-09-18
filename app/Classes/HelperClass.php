@@ -8,9 +8,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
-class UserClass
+class HelperClass
 {
-    public function profile() {
+    public function user() {
         try {
             $url = config('app.api_url');
             $token = Session::get('token');
