@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
-use App\Http\Controllers\Controller as Controller;
-
 class AuthKey
 {
     /**
@@ -21,14 +19,21 @@ class AuthKey
      */
     public function handle(Request $request, Closure $next)
     {
+        $url = config('app.api_url');
         $token = Session::get('token');
-        $response = Http::withToken($token)->get(Controller::url() . "/api/auth/user");
-        $result = json_decode((string) $response->getBody(), true);
-
-        // Get session data
-
         if (empty($token)) {
-            return back();
+            return redirect()->route('login');
+        }
+
+        $response = Http::withToken($token)->get($url . "/api/auth/user");
+        $result = json_decode((string) $response->getBody(), true);
+        if (empty($result) || empty($result['data'])) {
+            return redirect()->route('login');
+        }
+
+        // Check token
+        if ($token != $result['data']['user_session']['access_token']) {
+            return redirect()->route('login');
         }
 
         return $next($request);

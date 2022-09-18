@@ -93,6 +93,7 @@ class AuthController extends Controller
             ]);
             return redirect()->route('login');
         } catch (\Exception $e) {
+            dd($e);
             $request->session()->flash('notification',[
                 'message' => 'Oops! Something went wrong.',
                 'status' => 'danger',
