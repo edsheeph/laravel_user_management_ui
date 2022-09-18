@@ -44,6 +44,6 @@ Follow these steps to install the system for development purposes:
 	php artisan serve --port 8001
 	```
 
-7. Make also a clone or copy of https://github.com/edsheeph/laravel_user_management.
+7. Make also a clone or copy of https://github.com/edsheeph/SMS-CORE-API.git.
 
 8. Start the development.
